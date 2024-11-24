@@ -40,7 +40,8 @@ extern uint16_t VU_SETMENU_UP;
 extern uint16_t VU_SETMENU_DOWN;
 extern uint16_t VU_SETMENU_RIGHT;
 extern uint16_t VU_SETMENU_LEFT;
-extern uint16_t VU_POWER_OFF;
-extern uint16_t VU_POWER_ON;
+extern uint16_t VU_MENU;
+extern uint16_t VU_POWER_TOGGLE;
+extern uint16_t TV_POWER_TOGGLE;
 
 void register_device_VU();
