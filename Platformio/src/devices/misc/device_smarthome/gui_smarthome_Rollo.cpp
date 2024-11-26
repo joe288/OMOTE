@@ -19,54 +19,33 @@ std::map<char, uint16_t> key_commands_short_smarthome_Rollo = {};
 std::map<char, uint16_t> key_commands_long_smarthome_Rollo = {};
 
 // Smart Home Toggle Event handler
-
-static void button_clicked_event_cb(lv_event_t* e) {
+static void timout_event_cb(lv_event_t* e){
+  lv_obj_t* drop = lv_event_get_target(e);
   int user_data = (intptr_t)(e->user_data);
+  char buffer[30];
   switch (user_data)
   {
-  case 11: //down
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Strasse closed");
+  case 10: 
+    sprintf(buffer,"set WZ_Rollo_Strasse pct %d",(lv_dropdown_get_selected(drop)*10));
     break;
-  case 12: //stop
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Strasse stop");
+  case 20: 
+    sprintf(buffer,"set WZ_Rollo_gross pct %d",(lv_dropdown_get_selected(drop)*10));
     break;
-  case 13: //up
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Strasse open");
+  case 30: 
+    sprintf(buffer,"set WZ_Rollo_Tuer pct %d",(lv_dropdown_get_selected(drop)*10));
     break;
-  case 21: //down
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_gross closed");
-    break;
-  case 22: //stop
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_gross stop");
-    break;
-  case 23: //up
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_gross open");
-    break;
-  case 31: //down
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Tuer closed");
-    break;
-  case 32: //stop
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Tuer stop");
-    break;
-  case 33: //up
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_Tuer open");
-    break;
-  case 41: //down
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_fest closed");
-    break;
-  case 42: //stop
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_fest stop");
-    break;
-  case 43: //up
-      executeCommand(SMARTHOME_MQTT_FHEM,"set WZ_Rollo_fest open");
+  case 40: 
+    sprintf(buffer,"set WZ_Rollo_fest pct %d",(lv_dropdown_get_selected(drop)*10));
     break;
   default:
     break;
-  }  
+  }
+  executeCommand(SMARTHOME_MQTT_FHEM,buffer);
 }
+
 void createRollo(lv_obj_t * parent, const char * text, uint8_t index) {
   lv_obj_t* menuBox = lv_obj_create(parent);
-  lv_obj_set_size(menuBox, lv_pct(100), 74);
+  lv_obj_set_size(menuBox, lv_pct(100), 68);
   lv_obj_set_style_bg_color(menuBox, color_primary, LV_PART_MAIN);
   lv_obj_set_style_border_width(menuBox, 0, LV_PART_MAIN);
 
@@ -79,42 +58,29 @@ void createRollo(lv_obj_t * parent, const char * text, uint8_t index) {
   lv_obj_t* menuLabel = lv_label_create(menuBox);
   lv_label_set_text(menuLabel, text);
   lv_obj_align(menuLabel, LV_ALIGN_TOP_MID, 22, 0);
-
-  // -- create a button Down
-  lv_obj_t* button = lv_btn_create(menuBox);
-  lv_obj_set_size(button, 28, 28);
-  lv_obj_align(button, LV_ALIGN_TOP_RIGHT, -100, 20);
-  lv_obj_set_style_radius(button, 5, LV_PART_MAIN);
-  lv_obj_set_style_bg_color(button, lv_color_lighten(color_primary, 100), LV_PART_MAIN);
-  lv_obj_add_event_cb(button, button_clicked_event_cb, LV_EVENT_CLICKED, (void *)(intptr_t) (index+1));
-  BattIconLabel = lv_label_create(button);
-  lv_label_set_text(BattIconLabel, LV_SYMBOL_DOWN);
-  lv_obj_center(BattIconLabel);
-  lv_obj_set_style_text_font(BattIconLabel, &lv_font_montserrat_16, LV_PART_MAIN);
-
-  //-- create a button Stop
-  button = lv_btn_create(menuBox);
-  lv_obj_set_size(button, 28, 28);
-  lv_obj_align(button, LV_ALIGN_TOP_RIGHT, -50, 20);
-  lv_obj_set_style_radius(button, 5, LV_PART_MAIN);
-  lv_obj_set_style_bg_color(button, lv_color_lighten(color_primary, 100), LV_PART_MAIN);
-  lv_obj_add_event_cb(button, button_clicked_event_cb, LV_EVENT_CLICKED, (void *)(intptr_t) (index+2));
-  BattIconLabel = lv_label_create(button);
-  lv_label_set_text(BattIconLabel, LV_SYMBOL_PAUSE);
-  lv_obj_center(BattIconLabel);
-  lv_obj_set_style_text_font(BattIconLabel, &lv_font_montserrat_16, LV_PART_MAIN);
-
-  //-- create a button UP
-  button = lv_btn_create(menuBox);
-  lv_obj_set_size(button, 28, 28);
-  lv_obj_align(button, LV_ALIGN_TOP_RIGHT, 0, 20);
-  lv_obj_set_style_radius(button, 5, LV_PART_MAIN);
-  lv_obj_set_style_bg_color(button, lv_color_lighten(color_primary, 100), LV_PART_MAIN);
-  lv_obj_add_event_cb(button, button_clicked_event_cb, LV_EVENT_CLICKED, (void *)(intptr_t) (index+3));
-  BattIconLabel = lv_label_create(button);
-  lv_label_set_text(BattIconLabel, LV_SYMBOL_UP);
-  lv_obj_center(BattIconLabel);
-  lv_obj_set_style_text_font(BattIconLabel, &lv_font_montserrat_16, LV_PART_MAIN);
+  
+  // -- create a Dropdown
+  lv_obj_t* drop = lv_dropdown_create(menuBox);
+  lv_dropdown_set_options(drop, "0\n"
+                                "10\n"
+                                "20\n"
+                                "30\n"
+                                "40\n"
+                                "50\n"
+                                "60\n"
+                                "70\n"
+                                "80\n"
+                                "90\n"
+                                "100");
+  lv_dropdown_set_selected_highlight(drop, true);
+  lv_obj_align(drop, LV_ALIGN_TOP_RIGHT, 0, 20);
+  lv_obj_set_size(drop, 70, 22);
+  lv_obj_set_style_pad_top(drop, 1, LV_PART_MAIN);
+  lv_obj_set_style_bg_color(drop, color_primary, LV_PART_MAIN);
+  lv_obj_set_style_bg_color(lv_dropdown_get_list(drop), color_primary, LV_PART_MAIN);
+  lv_obj_set_style_border_width(lv_dropdown_get_list(drop), 1, LV_PART_MAIN);
+  lv_obj_set_style_border_color(lv_dropdown_get_list(drop), lv_color_hex(0x505050), LV_PART_MAIN);
+  lv_obj_add_event_cb(drop, timout_event_cb, LV_EVENT_VALUE_CHANGED, (void *)(intptr_t) index);
 }
 
 void create_tab_content_smarthome_Rollo(lv_obj_t* tab) {
