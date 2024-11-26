@@ -67,9 +67,9 @@ void scene_setKeys_TV() {
 }
 
 void scene_start_sequence_TV(void) {
-  executeCommand(VU_POWER_TOGGLE);
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE,"false");
   delay(500);
-  executeCommand(VU_POWER_TOGGLE);
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE,"true");
 }
 
 void scene_end_sequence_TV(void) {

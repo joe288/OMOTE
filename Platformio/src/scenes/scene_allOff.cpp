@@ -27,13 +27,13 @@ void scene_setKeys_allOff() {
 }
 
 void scene_start_sequence_allOff(void) {
-  executeCommand(SMARTHOME_MQTT_TV,"false");
-  executeCommand(VU_POWER_TOGGLE);
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE, "false");
+  executeCommand(SMARTHOME_OMOTE_VU_POWER, "false");
 }
 
 void scene_end_sequence_allOff(void) {
-  executeCommand(SMARTHOME_MQTT_TV,"true");
-  executeCommand(VU_POWER_TOGGLE);
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE, "true");
+  executeCommand(SMARTHOME_OMOTE_VU_POWER, "true");
   delay(10000);
   executeCommand(TV_POWER_TOGGLE);
 }
