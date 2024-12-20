@@ -4,9 +4,9 @@
 #include "applicationInternal/scenes/sceneRegistry.h"
 #include "applicationInternal/hardware/hardwarePresenter.h"
 // devices
-#include "devices/TV/device_samsungTV/device_samsungTV.h"
-#include "devices/AVreceiver/device_yamahaAmp/device_yamahaAmp.h"
+#include "devices/AVreceiver/device_VU/device_VU.h"
 #include "applicationInternal/commandHandler.h"
+#include "devices/misc/device_smarthome/device_smarthome.h"
 // guis
 #include "guis/gui_numpad.h"
 
@@ -19,47 +19,58 @@ std::map<char, uint16_t> key_commands_long_TV;
 
 void scene_setKeys_TV() {
   key_repeatModes_TV = {
-  
-    {KEY_STOP,  SHORT_REPEATED   },    {KEY_REWI,  SHORT            },    {KEY_PLAY,  SHORT            },    {KEY_FORW,  SHORT_REPEATED   },
-    {KEY_CONF,  SHORT            },                                                                          {KEY_INFO,  SHORT            },
+    {KEY_STOP,  SHORT_REPEATED   },
+    {KEY_REWI,  SHORT            },
+    {KEY_PLAY,  SHORT            },
+    {KEY_FORW,  SHORT_REPEATED   },
+    {KEY_CONF,  SHORT            },
+    {KEY_INFO,  SHORT            },
                                                          {KEY_UP,    SHORT_REPEATED   },
-                      {KEY_LEFT,  SHORT_REPEATED   },    {KEY_OK,    SHORT            },    {KEY_RIGHT, SHORT_REPEATED  },
+    {KEY_LEFT,  SHORT_REPEATED   },
+    {KEY_OK,    SHORT            },
+    {KEY_RIGHT, SHORT_REPEATED   },
                                                          {KEY_DOWN,  SHORT_REPEATED   },
                                                                                                              {KEY_SRC,   SHORT            },
                                                                                                              {KEY_CHUP,  SHORT            },
                                                                                                              {KEY_CHDOW, SHORT            },
-  
   };
   
   key_commands_short_TV = {
-  
-    {KEY_STOP,  SAMSUNG_PAUSE    },    {KEY_REWI,  SAMSUNG_REWIND   },    {KEY_PLAY,  SAMSUNG_PLAY     },    {KEY_FORW,  SAMSUNG_FASTFORWARD},
-    {KEY_CONF,  SAMSUNG_GUIDE    },                                                                          {KEY_INFO,  SAMSUNG_MENU     },
-                                                         {KEY_UP,    SAMSUNG_UP       },
-                      {KEY_LEFT,  SAMSUNG_LEFT    },     {KEY_OK,    SAMSUNG_SELECT   },    {KEY_RIGHT, SAMSUNG_RIGHT    },
-                                                         {KEY_DOWN,  SAMSUNG_DOWN     },
-                                                                                                             {KEY_SRC,   SAMSUNG_EXIT     },
-                                                                                                             {KEY_CHUP,  SAMSUNG_CHANNEL_UP},
-                                                                                                             {KEY_CHDOW, SAMSUNG_CHANNEL_DOWN},
-  
+    {KEY_STOP,  VU_STOP           },
+    {KEY_REWI,  VU_BACK           },
+    {KEY_PLAY,  VU_PLAY_PAUSE     },
+    {KEY_FORW,  VU_FORWARD        },
+    {KEY_CONF,  VU_CONTXT         },
+    {KEY_INFO,  VU_MENU           },
+    {KEY_UP,    VU_SETMENU_UP     },
+    {KEY_LEFT,  VU_SETMENU_LEFT   },
+    {KEY_OK,    VU_OK             },
+    {KEY_RIGHT, VU_SETMENU_RIGHT  },
+    {KEY_DOWN,  VU_SETMENU_DOWN   },
+    {KEY_SRC,   VU_EXIT           },
+    {KEY_CHUP,  VU_PROG_PLUS      },
+    {KEY_CHDOW, VU_PROG_MINUS     },
+    {KEY_REC,   VU_RECORD         },
+    {KEY_RED,   VU_RED            },
+    {KEY_GREEN, VU_GREEN          },
+    {KEY_BLUE,  VU_BLUE           },
+    {KEY_REC,   VU_RECORD         },
+    {KEY_BACK,  VU_EPG            },
+    {KEY_MUTE,  VU_MUTE_TOGGLE    },
+    {KEY_VOLDO, VU_VOL_MINUS      },
+    {KEY_VOLUP, VU_VOL_PLUS       },
+    //VU_BACK
   };
   
   key_commands_long_TV = {
-  
-  
   };
 
 }
 
 void scene_start_sequence_TV(void) {
-  executeCommand(SAMSUNG_POWER_ON);
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE,"false");
   delay(500);
-  executeCommand(YAMAHA_POWER_ON);
-  delay(1500);
-  executeCommand(YAMAHA_INPUT_DVD);
-  delay(3000);
-  executeCommand(SAMSUNG_INPUT_TV);
-
+  executeCommand(SMARTHOME_OMOTE_VU_ENABLE,"true");
 }
 
 void scene_end_sequence_TV(void) {

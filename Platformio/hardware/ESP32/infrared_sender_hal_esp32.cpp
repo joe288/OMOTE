@@ -25,7 +25,8 @@ enum IRprotocols {
   IR_PROTOCOL_SONY = 3,
   IR_PROTOCOL_RC5 = 4,
   IR_PROTOCOL_DENON = 5,
-  IR_PROTOCOL_SAMSUNG36 = 6
+  IR_PROTOCOL_SAMSUNG36 = 6,
+  IR_PROTOCOL_RC6 = 7
 };
 void sendIRcode_HAL(int protocol, std::list<std::string> commandPayloads, std::string additionalPayload) {
 
@@ -94,6 +95,13 @@ void sendIRcode_HAL(int protocol, std::list<std::string> commandPayloads, std::s
       data = std::stoull(dataStr, &sz, 0);
       Serial.printf("execute: will send IR RC5, data %s (%" PRIu64 ")\r\n", dataStr.c_str(), data);
       IrSender.sendRC5(IrSender.encodeRC5X(0x00, data));
+      break;
+    }
+
+    case IR_PROTOCOL_RC6:{
+      data = std::stoull(dataStr, &sz, 0);
+      Serial.printf("execute: will send IR RC6, data %s (%" PRIu64 ")\r\n", dataStr.c_str(), data);
+      IrSender.sendRC6(IrSender.encodeRC6(data>>8, data & 0xFF, kRC6_36Bits),36);
       break;
     }
 

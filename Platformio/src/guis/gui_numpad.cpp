@@ -9,7 +9,7 @@
 #include "applicationInternal/scenes/sceneHandler.h"
 #include "scenes/scene_TV.h"
 #include "scenes/scene_fireTV.h"
-#include "devices/TV/device_samsungTV/device_samsungTV.h"
+#include "devices/AVreceiver/device_VU/device_VU.h"
 
 // Virtual Keypad Event handler
 static void virtualKeypad_event_cb(lv_event_t* e) {
@@ -20,7 +20,7 @@ static void virtualKeypad_event_cb(lv_event_t* e) {
   int user_data = (intptr_t)(target->user_data);
   // send corrensponding number
   if (gui_memoryOptimizer_getActiveSceneName() == scene_name_TV) {
-    uint16_t virtualKeyMapTVNumbers[10] = {SAMSUNG_NUM_1, SAMSUNG_NUM_2, SAMSUNG_NUM_3, SAMSUNG_NUM_4, SAMSUNG_NUM_5, SAMSUNG_NUM_6, SAMSUNG_NUM_7, SAMSUNG_NUM_8, SAMSUNG_NUM_9, SAMSUNG_NUM_0};
+    uint16_t virtualKeyMapTVNumbers[10] = {VU_KEY1, VU_KEY2, VU_KEY3, VU_KEY4, VU_KEY5, VU_KEY6, VU_KEY7, VU_KEY8, VU_KEY9, VU_KEY0};
     uint16_t command = virtualKeyMapTVNumbers[user_data];
     executeCommand(command);
 

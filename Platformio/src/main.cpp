@@ -15,13 +15,13 @@
 #include "devices/TV/device_samsungTV/device_samsungTV.h"
 //#include "devices/TV/device_lgTV/device_lgTV.h"
 //   AV receiver
-#include "devices/AVreceiver/device_yamahaAmp/device_yamahaAmp.h"
+#include "devices/AVreceiver/device_VU/device_VU.h"
 //#include "devices/AVreceiver/device_denonAvr/device_denonAvr.h"
 //#include "devices/AVreceiver/device_lgsoundbar/device_lgsoundbar.h"
 //   media player
-#include "devices/mediaPlayer/device_appleTV/device_appleTV.h"
+#include "devices/mediaPlayer/device_playstation/device_playstation.h"
 //#include "devices/mediaPlayer/device_lgbluray/device_lgbluray.h"
-//#include "devices/mediaPlayer/device_samsungbluray/device_samsungbluray.h"
+#include "devices/mediaPlayer/device_samsungbluray/device_samsungbluray.h"
 //#include "devices/mediaPlayer/device_shield/device_shield.h"
 //   misc
 #include "devices/misc/device_smarthome/device_smarthome.h"
@@ -34,9 +34,9 @@
 #include "guis/gui_settings.h"
 #include "guis/gui_numpad.h"
 #include "guis/gui_BLEpairing.h"
-#include "devices/AVreceiver/device_yamahaAmp/gui_yamahaAmp.h"
-#include "devices/mediaPlayer/device_appleTV/gui_appleTV.h"
+#include "devices/mediaPlayer/device_playstation/gui_playstation.h"
 #include "devices/misc/device_smarthome/gui_smarthome.h"
+#include "devices/misc/device_smarthome/gui_smarthome_Rollo.h"
 //#include "devices/misc/device_airconditioner/gui_airconditioner.h"
 #include "applicationInternal/keys.h"
 #include "applicationInternal/gui/guiStatusUpdate.h"
@@ -45,8 +45,7 @@
 #include "scenes/scene_allOff.h"
 #include "scenes/scene_TV.h"
 #include "scenes/scene_fireTV.h"
-#include "scenes/scene_chromecast.h"
-#include "scenes/scene_appleTV.h"
+#include "scenes/scene_Playstation.h"
 #include "applicationInternal/scenes/sceneHandler.h"
 
 #if defined(ARDUINO)
@@ -88,13 +87,13 @@ int main(int argc, char *argv[]) {
   register_device_samsungTV();
 //  register_device_lgTV();
   //   AV receiver
-  register_device_yamahaAmp();
+  register_device_VU();
   //register_device_denonAvr();
   //register_device_lgsoundbar();
   //   media player
-  register_device_appleTV();
+  register_device_playstation();
   //register_device_lgbluray();
-  //register_device_samsungbluray();
+  register_device_samsungbluray();
   //register_device_shield();
   //   misc
   register_device_smarthome();
@@ -112,18 +111,18 @@ int main(int argc, char *argv[]) {
   register_gui_sceneSelection();
   register_gui_irReceiver();
   register_gui_settings();
-  register_gui_appleTV();
   register_gui_numpad();
   #if (ENABLE_KEYBOARD_BLE == 1)
   register_gui_blepairing();
   #endif
   register_gui_smarthome();
+  register_gui_smarthome_Rollo();
+  register_gui_playstation();
   //register_gui_airconditioner();
-  register_gui_yamahaAmp();
   // Only show these GUIs in the main gui list. If you don't set this explicitely, by default all registered guis are shown.
   #if (USE_SCENE_SPECIFIC_GUI_LIST != 0)
   main_gui_list =
-    {tabName_yamahaAmp, tabName_sceneSelection, tabName_smarthome, tabName_settings, tabName_irReceiver
+    {tabName_sceneSelection, tabName_smarthome, tabName_smarthome_Rollo, tabName_settings, tabName_irReceiver
     #if (ENABLE_KEYBOARD_BLE == 1)
     , tabName_blepairing
     #endif
@@ -134,11 +133,10 @@ int main(int argc, char *argv[]) {
   register_scene_defaultKeys();
   register_scene_TV();
   register_scene_fireTV();
-  register_scene_chromecast();
-  register_scene_appleTV();
+  register_scene_Playstation();
   register_scene_allOff();
   // Only show these scenes on the sceneSelection gui. If you don't set this explicitely, by default all registered scenes are shown.
-  set_scenes_on_sceneSelectionGUI({scene_name_TV, scene_name_fireTV, scene_name_chromecast, scene_name_appleTV});
+   set_scenes_on_sceneSelectionGUI({scene_name_TV, scene_name_fireTV, scene_name_Playstation});
 
   // init GUI - will initialize tft, touch and lvgl
   init_gui();
