@@ -85,7 +85,7 @@ void configIMUInterruptsBeforeGoingToSleep()
   //LIS3DH_INT1_THS   
   dataToWrite = 0;
   //Provide 7 bit value, 0x7F always equals max range by accelRange setting
-  dataToWrite |= 0x45;
+  dataToWrite |= 0x7F;
   IMU.writeRegister(LIS3DH_INT1_THS, dataToWrite);
   
   //LIS3DH_INT1_DURATION  

@@ -36,18 +36,18 @@ t_gui_list main_gui_list;
 
 void register_scene_defaultKeys(void) {
   key_repeatModes_default = {
-                                                                                                             {KEY_OFF,   SHORT            },
+    {KEY_OFF,   SHORT            },
     {KEY_STOP,  SHORT            },
     {KEY_REWI,  SHORTorLONG      },
     {KEY_PLAY,  SHORT            },
     {KEY_FORW,  SHORTorLONG      },
     {KEY_CONF,  SHORT            },
     {KEY_INFO,  SHORT            },
-                                                         {KEY_UP,    SHORT            },
+    {KEY_UP,    SHORT            },
     {KEY_LEFT,  SHORT            },
     {KEY_OK,    SHORT            },
     {KEY_RIGHT, SHORT            },
-                                                         {KEY_DOWN,  SHORT            },
+    {KEY_DOWN,  SHORT            },
     {KEY_BACK,  SHORT            },
     {KEY_SRC,   SHORT            },
     {KEY_VOLUP, SHORT_REPEATED   },
@@ -63,7 +63,7 @@ void register_scene_defaultKeys(void) {
   };
   
   key_commands_short_default = {
-                                                                                                             {KEY_OFF,   SCENE_ALLOFF_FORCE},
+    {KEY_OFF,   SCENE_ALLOFF_FORCE},
     {KEY_STOP,  GUI_SMARTHOME_ACTIVATE},
     /*{KEY_REWI,  COMMAND_UNKNOWN  },
     {KEY_PLAY,  COMMAND_UNKNOWN  },
