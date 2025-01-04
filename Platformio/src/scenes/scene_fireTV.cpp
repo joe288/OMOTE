@@ -22,11 +22,11 @@ void scene_setKeys_fireTV() {
     {KEY_FORW,  SHORTorLONG      },
     {KEY_CONF,  SHORT            },
     {KEY_INFO,  SHORT            },
-                                                         {KEY_UP,    SHORT            },
+    {KEY_UP,    SHORT            },
     {KEY_LEFT,  SHORT            },
     {KEY_OK,    SHORT            },
     {KEY_RIGHT, SHORT            }, 
-                                                         {KEY_DOWN,  SHORT            },
+    {KEY_DOWN,  SHORT            },
     {KEY_SRC,   SHORT            }  
   };
   
@@ -36,11 +36,11 @@ void scene_setKeys_fireTV() {
     {KEY_FORW,  KEYBOARD_FASTFORWARD  },
     {KEY_CONF,  KEYBOARD_HOME         },
     {KEY_INFO,  KEYBOARD_MENU         },
-                                                         {KEY_UP,    KEYBOARD_UP      },
+    {KEY_UP,    KEYBOARD_UP           },
     {KEY_LEFT,  KEYBOARD_LEFT         },
     {KEY_OK,    KEYBOARD_SELECT       },    
     {KEY_RIGHT, KEYBOARD_RIGHT        },
-                                                         {KEY_DOWN,  KEYBOARD_DOWN    },
+    {KEY_DOWN,  KEYBOARD_DOWN         },
     {KEY_SRC,   KEYBOARD_BACK         }  
   };
   

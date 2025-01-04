@@ -11,6 +11,7 @@
 #include "scenes/scene_allOff.h"
 #include "scenes/scene_TV.h"
 #include "scenes/scene_fireTV.h"
+#include "devices/AVreceiver/device_VU/device_VU.h"
 // #include "scenes/scene_chromecast.h"
 // #include "scenes/scene_appleTV.h"
 #include "scenes/scene_Playstation.h"
@@ -77,10 +78,10 @@ void register_scene_defaultKeys(void) {
   /*{KEY_DOWN,  COMMAND_UNKNOWN  },*/
     {KEY_BACK,  SCENE_SELECTION  },
   /*{KEY_SRC,   COMMAND_UNKNOWN  },*/
-    // {KEY_VOLUP, YAMAHA_VOL_PLUS  },
-    // {KEY_MUTE,  YAMAHA_MUTE_TOGGLE},
-  /*{KEY_CHUP,  COMMAND_UNKNOWN  },*/
-    // {KEY_VOLDO, YAMAHA_VOL_MINUS },
+    {KEY_VOLUP, VU_VOL_PLUS  },
+    {KEY_MUTE,  VU_MUTE_TOGGLE},
+    // {KEY_CHUP,  COMMAND_UNKNOWN  },
+    {KEY_VOLDO, VU_VOL_MINUS },
     {KEY_REC,   SCENE_BACK_TO_PREVIOUS_GUI_LIST  },
   /*{KEY_CHDOW, COMMAND_UNKNOWN  },*/
     {KEY_RED,   SCENE_TV_FORCE   },

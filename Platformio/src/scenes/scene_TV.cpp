@@ -25,14 +25,14 @@ void scene_setKeys_TV() {
     {KEY_FORW,  SHORT_REPEATED   },
     {KEY_CONF,  SHORT            },
     {KEY_INFO,  SHORT            },
-                                                         {KEY_UP,    SHORT_REPEATED   },
+    {KEY_UP,    SHORT_REPEATED   },
     {KEY_LEFT,  SHORT_REPEATED   },
     {KEY_OK,    SHORT            },
     {KEY_RIGHT, SHORT_REPEATED   },
-                                                         {KEY_DOWN,  SHORT_REPEATED   },
-                                                                                                             {KEY_SRC,   SHORT            },
-                                                                                                             {KEY_CHUP,  SHORT            },
-                                                                                                             {KEY_CHDOW, SHORT            },
+    {KEY_DOWN,  SHORT_REPEATED   },
+    {KEY_SRC,   SHORT            },
+    {KEY_CHUP,  SHORT            },
+    {KEY_CHDOW, SHORT            },
   };
   
   key_commands_short_TV = {
