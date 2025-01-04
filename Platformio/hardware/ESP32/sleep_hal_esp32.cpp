@@ -17,7 +17,7 @@
 
 uint8_t ACC_INT_GPIO = 13;
 
-int MOTION_THRESHOLD = 50;         // motion above threshold keeps device awake
+int MOTION_THRESHOLD = 80;         // motion above threshold keeps device awake
 int DEFAULT_SLEEP_TIMEOUT = 20000; // default time until device enters sleep mode in milliseconds. Can be overridden.
 
 // is "lift to wake" enabled
@@ -139,10 +139,10 @@ void enterSleep(){
   #endif
 
   // Prepare IO states
-  digitalWrite(TFT_DC, LOW); // LCD control signals off
-  digitalWrite(TFT_CS, LOW);
-  digitalWrite(TFT_MOSI, LOW);
-  digitalWrite(TFT_SCLK, LOW);
+  digitalWrite(LCD_DC_GPIO, LOW); // LCD control signals off
+  digitalWrite(LCD_CS_GPIO, LOW);
+  digitalWrite(LCD_MOSI_GPIO, LOW);
+  digitalWrite(LCD_SCK_GPIO, LOW);
   digitalWrite(LCD_EN_GPIO, HIGH); // LCD logic off
   digitalWrite(LCD_BL_GPIO, HIGH); // LCD backlight off
   // pinMode(CRG_STAT, INPUT); // Disable Pull-Up
